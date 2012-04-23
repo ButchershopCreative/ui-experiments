@@ -1,0 +1,193 @@
+<!--
+Copyright 2011 Adobe Systems, incorporated
+This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License <http://creativecommons.org/licenses/by-nc-sa/3.0/> . 
+Permissions beyond the scope of this license, pertaining to the examples of code included within this work are available at Adobe <http://www.adobe.com/communities/guidelines/ccplus/commercialcode_plus_permission.html> .
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Regions - Demo</title>
+	<style type="text/css">
+	
+	/* 
+		Colors
+		
+		#C5DFF0 - light blue
+		#D3ECB5 - light green
+		#919789 - dark green
+		#C34150 - desaturated pink
+	*/
+	
+	body,
+	html{
+		height:100%;
+		width:100%;
+		overflow:visible;
+	}
+	
+	body{
+		margin:0;
+		font-family: Helvetica, Arial, sans-serif;
+		color:#222;
+		font-size:15px;
+		line-height:20px;
+	}
+	
+	#instructions{
+		font-size:13px;
+		padding:5px 25px;
+		background:#ffc;
+		border-bottom:1px solid #fc0;
+	}
+
+	#sourcea{
+		-webkit-flow-into: main-thread;
+		text-align:justify;
+	}
+
+	#sourceb{
+	    -webkit-flow-into: secondary-thread;
+	    text-align:justify;
+	}
+
+	.regiona{
+		-webkit-flow-from: main-thread;
+		margin:0 25px 25px 0;
+		background:#C5DFF0;
+		padding:15px;
+	}
+
+	.regionb{
+	    -webkit-flow-from: secondary-thread;
+		margin:0 25px 25px 0;
+		background:#FAEBD7;
+		padding:15px;
+	}    
+	
+	#region1{
+		width:100%;
+		height:100px;
+		float:left;
+	}
+	
+	#region2{
+		width:40%;
+		height:200px;
+		float:left;
+	}
+	
+	#region3{
+		width:40%;
+		min-height:200px;
+		margin-right:0;
+	}
+
+	#region4{
+	    width:100%;
+	    height: 800px;
+	    overflow: visible;
+	    }
+
+    #region5{
+    width: 100%;
+    height: 400px;
+    overflow: visible;
+    }
+	
+	#workspace {
+		position:relative;
+		padding:50px;
+		overflow: scroll;
+	}
+
+	.warning {
+		border: 1px solid black;
+		color: red;
+		margin: 5px;
+		padding: 2px;
+		font-size: 1.2em;
+		display: none;
+	}
+	
+	.no-regions .warning {
+		display:block;
+	} 
+
+	h1 {
+        border-bottom: 5px solid #000000;
+        line-height: 40px;
+	}
+	
+	</style>
+</head>
+<body>
+	<div id="regionsNotSupportedMsg" class="warning">
+		Your browser does not appear to support CSS Regions, which is required by this demo. Try it in <a href="http://nightly.webkit.org/">WebKit nightly</a> or Chrome 16+ with CSS Regions flag enabled.
+	</div>
+	
+	<div id="instructions">
+		<strong>Tip:</strong> Resize browser window to see how the text flows.  Great for article-type content
+	</div>
+	
+	<div id="sourcea">
+		<!-- The 0px margin is a workaround for a bug in the WebKit implementation -->
+		<p style="margin: 0px">
+
+		    <B>CSS Regions</B> let's you build custom-shaped content boxes and "multiple" text flows.  It's useful for article-type pages.  
+		    Here's some random text below to illustrate what I'm talking about...
+
+		<h1>Once upon a...</h1>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla suscipit faucibus consequat. Nam interdum vehicula tempus. Vivamus tellus magna, tincidunt ac ullamcorper eget, facilisis vitae tortor. Aenean velit tellus, laoreet ut consequat at, blandit vitae ligula. Vivamus at orci eget lacus faucibus dapibus. Nulla porttitor massa eget ante cursus accumsan. Praesent a nisi purus, ac rhoncus sem. Aliquam vel vehicula risus. Suspendisse lectus enim, elementum egestas laoreet eu, tempus eget justo. Integer sollicitudin libero vel nunc varius sit amet interdum est facilisis. In hac habitasse platea dictumst. Suspendisse potenti. Etiam malesuada, quam in pharetra faucibus, leo nibh condimentum nibh, vel elementum ipsum lacus non lorem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi nec nunc dui, eget rhoncus elit. Proin quis justo eget odio elementum ornare.
+
+		<h1>How does it work?</h1>
+		CSS Regions allows you to take content from a source element and then format it into a series of regions.  You can also get really fancy and make text wrap into regions of specific shapes (rectangle, circles, ellipses, or polygons).<BR><BR>
+
+		** It should also be noted that CSS Regions is not widely supported and is mostly disabled by default in most browsers.  
+		Seems to work fine in Chrome 18.<BR><BR>
+
+		<B>To implement CSS Regions:</B><BR>
+		<ul>
+		    <li>In CSS, define an element with the following:<BR>
+		    -webkit-flow-into: main-thread<BR><BR>
+		    Example:<BR>
+		    <small>	#source{<BR>
+		-webkit-flow-into: main-thread;<BR>
+		text-align:justify;<BR>
+	}</small>
+		    </li>
+		    <li>Then define an element class, or "region" referencing the source element:<BR>
+		-webkit-flow-from: main-thread;<BR><BR>
+		Example:<BR>
+        <small>.region{<BR>
+		-webkit-flow-from: main-thread;<BR>
+	    }</small>
+		    </li>
+
+		    <li>Create source and region elements.</li>
+		    </ul>
+		
+		</p>
+	</div>
+
+	<div id="sourceb">
+			<p style="margin: 0px">
+			<h1>Pink box</h1>
+			Is from another source.<BR><BR>
+			Scroll down to see the rest of this text feed into another pink box at the bottom of this page.<BR><BR>
+			<h1>Pink box continued...</h1>
+			This text is from the same source as that first pink box.  Cool, yeah? 
+			</p>
+	</div>
+
+	<div id="workspace">
+	    <h1>CSS Regions</h1>
+		<div id="region1" class="regiona"></div>
+		<div id="region2" class="regiona"></div>
+		<div id="region3" class="regionb"></div>
+		<div id="region4" class="regiona"></div>
+		<div id="region5" class="regionb"></div>
+	</div>
+	
+</body>
+</html>
