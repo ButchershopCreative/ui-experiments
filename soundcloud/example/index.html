@@ -13,11 +13,16 @@
   });
 
   $("#loadTracks").live("click", function(){
-    SC.get("/tracks", {limit: 1}, function(tracks){
+    SC.get("/tracks", function(tracks){
       var track = tracks[0];
-      SC.oEmbed(track.uri, document.getElementById("track"));
+      SC.oEmbed(track.uri, document.getElementById("track")); //Get multiple tracks?  Make loop
     });
+
+    SC.get("/groups/55517/tracks", {limit: 1}, function(tracks){
+        alert("This track has been played " + tracks[0].playback_count + " times"); //use playback_count
   });
+});
+  
 </script>
 
 <input type="button" id="loadTracks" class="button big" value="Get hottest track">
