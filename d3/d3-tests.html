@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Donut Chart</title>
+    <script type="text/javascript" src="d3.v2.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <style type="text/css">
+
+body {
+  font: 10px sans-serif;
+}
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+d3.select("body")
+     .style("background-color", "#F6C9CC");
+
+d3.selectAll("p")
+     .style("background-color", "#ffffff");
+
+var rectDemo = d3.select("#rect-demo").
+  append("svg:svg").
+  attr("width", 400).
+  attr("height", 300);
+
+rectDemo.append("svg:rect").
+  attr("x", 100).
+  attr("y", 100).
+  attr("height", 100).
+  attr("width", 200);
+     
+    </script>
+
+<div id="rect-demo"></div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius urna quis justo convallis eu dignissim nunc tempor. Nulla sagittis augue id est mattis ac semper nunc tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer tincidunt magna consequat metus tempor eu fermentum nulla laoreet. Phasellus lacus quam, ornare vitae imperdiet quis, vestibulum non elit. Quisque vulputate magna vel dui faucibus ac rhoncus quam adipiscing. Morbi non purus sem, at luctus orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus imperdiet sem eu nisi dignissim id hendrerit purus feugiat.</p>
+
+<p>Donec nec quam id ipsum ultrices convallis iaculis et tellus. Nam auctor, orci in tempor lobortis, purus felis laoreet turpis, nec lobortis velit velit in orci. Morbi sodales viverra molestie. Quisque ut dolor sit amet lacus viverra tristique. Aliquam ac massa nunc. Aenean a turpis dui, sit amet vehicula sapien. Nunc in tortor arcu. Ut sit amet erat vulputate risus tempor eleifend nec vestibulum sem. Nulla quis dui pharetra lorem varius porta vel eu est. Donec ut justo non purus pharetra lacinia at quis mauris. Nam eget leo odio.</p>
+
+<p>Nullam magna nunc, pharetra ac convallis ac, cursus eget quam. Maecenas commodo nunc eu est convallis dapibus. Nulla justo arcu, aliquam eu ornare a, imperdiet non elit. Aliquam interdum lacus quis nunc rhoncus tincidunt. In hendrerit aliquam viverra. Donec quis mollis libero. Cras at orci orci, quis convallis felis. Vestibulum accumsan, elit ut sollicitudin scelerisque, turpis velit rhoncus lacus, sed iaculis risus velit a tellus.</p>
+
+<p>Phasellus interdum, dui imperdiet viverra mattis, nisl nisi laoreet arcu, ut faucibus nunc velit in nibh. Maecenas tristique lacus non sem iaculis volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus nibh, fermentum sed placerat in, faucibus sit amet mi. Nullam vehicula, diam et vestibulum pellentesque, ipsum mauris hendrerit justo, a feugiat quam ligula ut elit. Aenean pulvinar risus non turpis sagittis accumsan mollis velit accumsan. Duis blandit imperdiet nisi, ac rutrum magna semper nec. Integer ornare pharetra orci, nec rutrum sapien rhoncus quis. Vivamus tempor aliquet euismod. Fusce vitae euismod lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam lacus velit, scelerisque in auctor nec, accumsan eleifend diam.</p>
+
+<p>Aenean sed nibh eu dolor tincidunt scelerisque vitae quis diam. Fusce sem enim, dapibus vel porta eu, venenatis id mi. Nulla vitae mi id libero facilisis dapibus malesuada ultrices turpis. Donec pretium diam in ante ornare et scelerisque risus rhoncus. Curabitur nulla augue, lacinia in pretium vitae, rhoncus et eros. Suspendisse potenti. Donec dictum facilisis neque et ultrices. Suspendisse in leo sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque magna ac est egestas ultrices. Donec pharetra augue et magna pulvinar lacinia.</p>
+
+
+  </body>
+</html>
+
