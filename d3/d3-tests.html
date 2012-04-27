@@ -80,10 +80,17 @@ barDemo.selectAll("rect").
   attr("width", barWidth).
   attr("fill", "#2d578b");
 
-//SoundCloud Shit
-// id
-// GET /users/{id}/tracks - lists tracks of user
-    // playback_count 
+barDemo.selectAll("text").
+  data(data).
+  enter().
+  append("svg:text").
+  attr("x", function(datum, index) { return x(index) + barWidth; }).
+  attr("y", function(datum) { return height - y(datum.books); }).
+  attr("dx", -barWidth/2).
+  attr("dy", "1.2em").
+  attr("text-anchor", "middle").
+  text(function(datum) { return datum.books;}).
+  attr("fill", "white");
 </script>
   </body>
 </html>

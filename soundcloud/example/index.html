@@ -5,24 +5,23 @@
   <body>
 
     <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://connect.soundcloud.com/sdk.js"></script>
-
+    
+<script src="http://connect.soundcloud.com/sdk.js"></script>
 <script>
   SC.initialize({
-    client_id: "7kIeyF5f2ETFo1fEWKwNQ"
+    client_id: "YOUR_CLIENT_ID"
   });
 
   $("#loadTracks").live("click", function(){
-    SC.get("/groups/", {limit: 1}, function(tracks){
+    SC.get("/tracks", {limit: 1}, function(tracks){
       var track = tracks[0];
       SC.oEmbed(track.uri, document.getElementById("track"));
-      console.log(track.uri);
     });
   });
 </script>
 
 <input type="button" id="loadTracks" class="button big" value="Get hottest track">
 <div id="track"></div>
-    
+
   </body>
 </html>
