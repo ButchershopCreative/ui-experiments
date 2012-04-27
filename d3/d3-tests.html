@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Donut Chart</title>
+    <title>TEST</title>
     <script type="text/javascript" src="d3.v2.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://w.soundcloud.com/player/api.js"></script>
+
     <style type="text/css">
 
 body {
@@ -14,28 +16,8 @@ body {
     </style>
   </head>
   <body>
-    <script type="text/javascript">
 
-d3.select("body")
-     .style("background-color", "#F6C9CC");
-
-d3.selectAll("p")
-     .style("background-color", "#ffffff");
-
-var rectDemo = d3.select("#rect-demo").
-  append("svg:svg").
-  attr("width", 400).
-  attr("height", 300);
-
-rectDemo.append("svg:rect").
-  attr("x", 100).
-  attr("y", 100).
-  attr("height", 100).
-  attr("width", 200);
-     
-    </script>
-
-<div id="rect-demo"></div>
+<div id="bar-demo"></div>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius urna quis justo convallis eu dignissim nunc tempor. Nulla sagittis augue id est mattis ac semper nunc tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer tincidunt magna consequat metus tempor eu fermentum nulla laoreet. Phasellus lacus quam, ornare vitae imperdiet quis, vestibulum non elit. Quisque vulputate magna vel dui faucibus ac rhoncus quam adipiscing. Morbi non purus sem, at luctus orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus imperdiet sem eu nisi dignissim id hendrerit purus feugiat.</p>
 
@@ -47,7 +29,62 @@ rectDemo.append("svg:rect").
 
 <p>Aenean sed nibh eu dolor tincidunt scelerisque vitae quis diam. Fusce sem enim, dapibus vel porta eu, venenatis id mi. Nulla vitae mi id libero facilisis dapibus malesuada ultrices turpis. Donec pretium diam in ante ornare et scelerisque risus rhoncus. Curabitur nulla augue, lacinia in pretium vitae, rhoncus et eros. Suspendisse potenti. Donec dictum facilisis neque et ultrices. Suspendisse in leo sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque magna ac est egestas ultrices. Donec pharetra augue et magna pulvinar lacinia.</p>
 
+<script type="text/javascript">
 
+d3.select("body")
+     .style("color", "#38B0DE")
+     .style("background-color", "#F6C9CC");
+
+d3.selectAll("p") //why?
+    .style("background-color", "#000000");
+
+var n = d3.selectAll("p");
+
+var m = d3.select("body");
+
+console.log(m);
+console.log(n);
+
+var q = $("p");
+console.log(q);
+
+var data = [{year: 2006, books: 54},
+            //y
+            {year: 2007, books: 43},
+            {year: 2008, books: 41},
+            {year: 2009, books: 44},
+            {year: 2010, books: 35}];
+
+
+var barWidth = 40;
+var width = (barWidth + 10) * data.length;
+var height = 200;
+
+var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.books; })]).
+  rangeRound([0, height]);
+
+// add the canvas to the DOM
+var barDemo = d3.select("#bar-demo").
+  append("svg:svg").
+  attr("width", width).
+  attr("height", height);
+
+barDemo.selectAll("rect").
+  data(data).
+  enter().
+  append("svg:rect").
+  attr("x", function(datum, index) { return x(index); }).
+  attr("y", function(datum) { return height - y(datum.books); }).
+  attr("height", function(datum) { return y(datum.books); }).
+  attr("width", barWidth).
+  attr("fill", "#2d578b");
+
+//SoundCloud Shit
+// id
+// GET /users/{id}/tracks - lists tracks of user
+    // playback_count 
+</script>
   </body>
 </html>
 
