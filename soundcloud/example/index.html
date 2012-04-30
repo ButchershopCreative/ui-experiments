@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style type="text/css">
+    #chart {
+    position: relative;
+    }
+    .track {
+        display: block;
+        position: relative;
+        float: left;
+        margin: 20px;
+        }
+</style>
+
 </head>
 <body>
   <div id='chart'></div>
@@ -18,14 +31,23 @@
       var svg = d3.select("#chart").append("svg")
           .attr("width", 640)
           .attr("height", 480);
-      var x,y = 0;
+      var y = 500;
+      var x = 1000;
       var circle = svg.selectAll("circle")
           .data(tracks)
-        .enter().append("circle")
+        .enter().append("circle").transition() // Added transitions
+          .duration(1000)
+          .delay(function(d, i) { return i * 10; })
+          .attr("r", function(d) { return Math.sqrt(d * scale); })
+          .style("fill", "steelblue")
+          .style("stroke","#000")
+          .style("stroke-width", "3px")
           .attr("class", "track")
-          .attr("cx", x)
-          .attr("cy", y)
-          .attr("r", 12)
+          .attr("cx", function() {
+                return Math.random() * x;}) // produces random x position
+          .attr("cy", function() {
+                return Math.random() * y;}) // produces random y position
+          .attr("r", 50)
           .text(function(track) {
               console.log(track);
               return track.title; 
