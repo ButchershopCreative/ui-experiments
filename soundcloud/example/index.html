@@ -2,25 +2,18 @@
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head></head>
-  <body>
-
-    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
-    
-<script src="http://connect.soundcloud.com/sdk.js"></script>
-<script>
-  SC.initialize({
-    client_id: "7kIeyF5f2ETFo1fEWKwNQ"
-  });
-
-
-    SC.get("tracks/", function(something) {
-      console.log(something);
-    }); //uses filter genres
-  
-</script>
-
-
-<div id="loaded"></div>
-
+<body>
+  <div id="loaded"></div>
+  <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <script>
+    SC.initialize({
+      client_id: "7kIeyF5f2ETFo1fEWKwNQ",
+      redirect_uri: "http://localhost:8000/soundcloud/example/",
+    });
+    SC.get("/tracks?genres=dubstep&order=hotness", {limit: 100}, function(tracks){
+      console.log(tracks);
+    });
+  </script>
   </body>
 </html>
