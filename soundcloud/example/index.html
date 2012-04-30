@@ -33,7 +33,7 @@ var vis = d3.select("#chart").append("svg")
           var node = vis.selectAll("g.node") // make element g, gives it class "node"
               .data(bubble.nodes(classes(json)) // gets data and applies "bubble" to node data - using data, apply bubble
               .filter(function(d) { return !d.children; })) // then filters? and returns children
-          .enter().append("g") // appends information from "g", wtf is "g" - I dunno
+          .enter().append("g") // adds extra 'g'
               .attr("class", "node") // applies class: node -
               .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; }); // applies bubble transform: function(d)
           });
