@@ -38,7 +38,7 @@ function classes(root) {
 
   function recurse(name, node) {
     if (node.children) node.children.forEach(function(child) { recurse(node.name, child); }); //reading from flare.json
-    else classes.push({packageName: name, className: node.name, value: node.size}); // Replace with SoundCLoud stuff
+    else classes.push({packageName: name, className: node.name, value: node.size}); // Replace with SoundCloud stuff
   }
 
   recurse(null, root);

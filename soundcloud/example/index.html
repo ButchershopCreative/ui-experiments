@@ -9,12 +9,34 @@
   <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <script>
+var r = 960,
+    format = d3.format(",d"),
+    fill = d3.scale.category20c();
+ 
+var bubble = d3.layout.pack()
+     .sort(null)
+     .size([r, r]);
+ 
+var vis = d3.select("#chart").append("svg")
+    .attr("width", r)
+    .attr("height", r)
+    .attr("class", "bubble");
+ 
     SC.initialize({
       client_id: "7kIeyF5f2ETFo1fEWKwNQ",
       redirect_uri: "http://localhost:8000/soundcloud/example/",
     });
+    
     SC.get("/tracks?genres=dubstep&order=hotness", {limit: 100}, function(tracks){
       console.log(tracks);
+      $(tracks).each(function(track) {
+          var node = vis.selectAll("g.node") // make element g, gives it class "node"
+              .data(bubble.nodes(classes(json)) // gets data and applies "bubble" to node data - using data, apply bubble
+              .filter(function(d) { return !d.children; })) // then filters? and returns children
+          .enter().append("g") // appends information from "g", wtf is "g" - I dunno
+              .attr("class", "node") // applies class: node -
+              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; }); // applies bubble transform: function(d)
+          });
     });
   </script>
 
