@@ -12,26 +12,31 @@ $(function() {
           
       var y = 500;
       var x = 1000;
-      
+
       var node = svg.selectAll("g.node")
             .data(tracks);
     node.enter().append('g')
-      .attr('class', 'node');
-    node.append("title").text('something');
+      .attr('class', 'node')
+      .attr("transform", function(d) { return "translate(" + 200 + "," + 300 + ")"; });
+      // transform = "translate(x,y)"; x,y need to be randomly generated somehow
+      // Make g node should contain circle and text
+      // g node should define/transform the position
       node.append("circle")
             .style("fill", "steelblue")
             .style("stroke","#000")
             .style("stroke-width", "3px")
             .attr("class", "track")
-            .attr("cx", function() {
-                return Math.random() * x;}) // produces random x position
-            .attr("cy", function() {
-                return Math.random() * y;}) // produces random y position
+            //.attr("cx", function() {
+            //    return Math.random() * x;}) // produces random x position
+            //.attr("cy", function() {
+            //    return Math.random() * y;}) // produces random y position
             .attr("r", 50);
     node.append("text")
       .attr("text-anchor", "middle")
       .attr("dy", ".3em")
-      .text('Another');
+      .text(function(track) {
+                    return track.title;
+                })
     node.exit().remove();
     });
 });
