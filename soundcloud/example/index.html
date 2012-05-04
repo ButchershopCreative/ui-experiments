@@ -20,45 +20,6 @@
   <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <script src="../d3.v2.js"></script>
-  <script>
-    // Check out http://mbostock.github.com/d3/tutorial/circle.html
-    SC.initialize({
-      client_id: "7kIeyF5f2ETFo1fEWKwNQ",
-      redirect_uri: "http://localhost:8000/soundcloud/example/",
-    });
-        
-    SC.get("/tracks?genres=dubstep&order=hotness", {limit: 5}, function(tracks){
-      var svg = d3.select("#chart").append("svg")
-            .attr("width", 640)
-            .attr("height", 480);
-          
-      var y = 500;
-      var x = 1000;
-      
-      var circle = svg.selectAll("circle")
-            .data(tracks) // data binds information to the circles
-        .enter().append("circle").transition() // Added transitions
-            .duration(1000)
-            .delay(function(d, i) { return i * 10; })
-            .attr("r", function(d) { return Math.sqrt(d * scale); })
-            .style("fill", "steelblue")
-            .style("stroke","#000")
-            .style("stroke-width", "3px")
-            .attr("class", "track")
-            .attr("cx", function() {
-                return Math.random() * x;}) // produces random x position
-            .attr("cy", function() {
-                return Math.random() * y;}) // produces random y position
-            .attr("r", 50)
-
-            circle.append("text")
-                .attr("text-anchor", "middle")
-                .attr("dy", ".3em")
-                .text(function(track) {
-                    console.log(track)
-                    return track.title;
-                });
-    });
-  </script>
+  <script src="application.js"></script>
 </body>
 </html>
