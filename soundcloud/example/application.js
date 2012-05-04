@@ -7,47 +7,52 @@ $(function() {
     });
         
     SC.get("/tracks?genres=dubstep&order=hotness", {limit: 5}, function(tracks){
-      
-      var x = 0;
+       console.log(tracks);
+      var x = 75;
+      var y = 0;
       $(tracks).each(function(n, track) {
         $(track).attr('x', x);
         x = x + 128;
-        $(track).attr('y', 240);
+        // "y" is being manipulated by comment count
+        $(track).attr('y', y);
+        y = track.comment_count / 3;
+        console.log(y);
       });
 
       var svg = d3.select("#chart").append("svg")
-        .attr("width", 640)
-        .attr("height", 480);
-          
-      // var y = 500;
-      // var x = 1000;
+        .attr("width", "100%")
+        .attr("height", "100%");
 
+      var r = 50;
+      // The following produces different radii based off of how many Favoritings a track has
+      // The more favorites, the bigger the radii
+      $(tracks).each(function(n, track) {
+        r = track.favoritings_count / 75;
+        $(track).attr('r', r);
+        });
+        
       var node = svg.selectAll("g.node")
         .data(tracks);
 
       node.enter().append('g')
         .attr('class', 'node')
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        // transform = "translate(x,y)"; x,y need to be randomly generated somehow
-        // Make g node should contain circle and text
-        // g node should define/transform the position
 
       node.append("circle")
         .style("fill", "steelblue")
+        .style("fill", function(d) { return "#" + d.duration })
         .style("stroke","#000")
         .style("stroke-width", "3px")
         .attr("class", "track")
-        //.attr("cx", function() {
-        //    return Math.random() * x;}) // produces random x position
-        //.attr("cy", function() {
-        //    return Math.random() * y;}) // produces random y position
-        .attr("r", 50);
+        .attr("r", function(d) { return d.r })
 
       node.append("text")
         .attr("text-anchor", "middle")
-        .attr("dy", ".3em")
+        .attr("dy", ".2em")
+        .attr("color", "255,255,240") //font color wtf?
+        // Returning the track title - shortened using substring
         .text(function(track) {
-          return track.title;
+          return track.title.substring(0, track.r / 5) + "...";
       });
 
       node.exit().remove();
