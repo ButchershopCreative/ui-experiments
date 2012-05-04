@@ -39,7 +39,6 @@ $(function() {
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
       node.append("circle")
-        .style("fill", "steelblue")
         .style("fill", function(d) { return "#" + d.duration })
         .style("stroke","#000")
         .style("stroke-width", "3px")
