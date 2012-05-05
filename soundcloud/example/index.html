@@ -3,25 +3,29 @@
 <head>
 
 <style type="text/css">
-    body {
-    font-size: 12px;
-    font-family: Arial;
-    color: #FFF;
-    }
-    
-    #chart {
-    position: relative;
-    }
-    .track {
-        display: block;
-        position: relative;
-        float: left;
-        margin: 20px;
-        }
+body {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFF;
+}
+
+#chart {
+  position: relative;
+}
+
+.track {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 20px;
+}
 </style>
 
 </head>
 <body>
+  <div class="header">
+    <h1>Sound Cloud API &amp; D3.js</h1>
+  </div>
   <div id='chart'></div>
   <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
