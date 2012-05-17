@@ -6,7 +6,7 @@
     body {
     font-size: 12px;
     font-family: Arial;
-    color: #FFF;
+    color: #000;
     }
     
     #chart {
@@ -22,6 +22,24 @@
 
 </head>
 <body>
+
+<SCRIPT LANGUAGE="JavaScript">
+      function testResults (form) {
+        var TestVar = form.bubbleModifier.value;
+        alert ("You chose:" + TestVar);
+        }
+</SCRIPT>
+
+  <form action="" method="get" name="bubbleModify" target="_self">
+        <label for="bubbleModifier">Modify Bubbles With:</label>
+        <select name="bubbleModifier">
+            <option value="value1">Likes</option>
+            <option value="value2">Comments</option>
+            <option value="value3">Play Count</option>
+        </select>
+        <input type="button" name="submitButton" value="Go!" onClick="testResults(this.form)">
+  </form>
+  
   <div id='chart'></div>
   <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
