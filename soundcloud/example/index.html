@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Soundcloud API Experiments</title>
+  <style type="text/css">
+    body {
+      font-size: 12px;
+      font-family: Arial;
+      color: #000;
+    }
 
-<style type="text/css">
-body {
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #666;
-}
+    #chart {
+      position: relative;
+    }
 
-#chart {
-  position: relative;
-}
-
-.track {
-  display: block;
-  position: relative;
-  float: left;
-  margin: 20px;
-}
-</style>
-
+    .track {
+      display: block;
+      position: relative;
+      float: left;
+      margin: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Sound Cloud API &amp; D3.js</h1>
-    <h2>Most Favorited Dub Step tracks on Sound Cloud.</h2>
-    <p><blink>Skrillex, Forever!</blink></p>
-  </div>
+  <form action="" method="get" name="bubbleModify" target="_self">
+    <label for="bubbleModifier">Modify Bubbles With:</label>
+      <select name="bubbleModifier">
+        <option value="likes">Likes</option>
+        <option value="comments">Comments</option>
+        <option value="play_count">Play Count</option>
+      </select>
+    <input type="button" name="submitButton" value="Go!" onClick="testResults(this.form);">
+  </form>
   <div id='chart'></div>
   <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <script src="../d3.v2.js"></script>
   <script src="application.js"></script>
+  <script>
+    function testResults (form) {
+      var TestVar = form.bubbleModifier.value;
+      console.log("You chose:" + TestVar);
+    }
+  </script>
 </body>
 </html>
